@@ -51,6 +51,9 @@
               menu
             </button>
             <span class="mdc-top-app-bar__title">Selamat Datang !</span>
+            <button class="mdc-button mdc-button--outlined outlined-button--dark">
+              <?php echo date("d - F - Y") ?>
+            </button>
           </div>
         </div>
       </header>
@@ -63,9 +66,21 @@
                 <div class="mdc-card info-card info-card--success">
                   <div class="card-inner">
                     <h5 class="card-title">Barang Masuk </h5>
-                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">
-                      50 Layanan
-                    </h5>
+                    <?php
+                    include "../config/koneksi.php";
+                    $tgl = date("Y-m-d");
+                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangmasuk) AS hasil FROM barang_masuk WHERE tanggal = '$tgl'");
+                    $hasil =  mysqli_fetch_assoc($sql);
+                    $cek    = mysqli_num_rows($sql);
+                    if ($cek > 0) { ?>
+                      <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                        <?php echo $hasil['hasil']; ?> Layanan
+                      </h5>
+                    <?php } else { ?>
+                      <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                        0 Layanan
+                      </h5>
+                    <?php } ?>
                     <p class="tx-12 text-muted">48% target reached</p>
                     <div class="card-icon-wrapper">
                       <i class="material-icons">dvr</i>
@@ -77,9 +92,21 @@
                 <div class="mdc-card info-card info-card--danger">
                   <div class="card-inner">
                     <h5 class="card-title">Barang Keluar</h5>
-                    <h5 class="font-weight-light pb-2 mb-1 border-bottom">
-                      40 Layanan
-                    </h5>
+                    <?php
+                    include "../config/koneksi.php";
+                    $tgl = date("Y-m-d");
+                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangkeluar) AS hasil FROM barang_keluar WHERE tanggal = '$tgl'");
+                    $hasil =  mysqli_fetch_assoc($sql);
+                    $cek    = mysqli_num_rows($sql);
+                    if ($cek > 0) { ?>
+                      <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                        <?php echo $hasil['hasil']; ?> Layanan
+                      </h5>
+                    <?php } else { ?>
+                      <h5 class="font-weight-light pb-2 mb-1 border-bottom">
+                        0 Layanan
+                      </h5>
+                    <?php } ?>
                     <p class="tx-12 text-muted">55% target reached</p>
                     <div class="card-icon-wrapper">
                       <i class="material-icons">attach_money</i>
@@ -100,17 +127,29 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
+                      <th class="text-left">No</th>
                       <th class="text-left">Nama Barang</th>
                       <th class="text-left">Stok Barang</th>
                       <th class="text-left">Tempat</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-left">Frozen yogurt</td>
-                      <td class="text-left">20</td>
-                      <td class="text-left">Gudang1</td>
-                    </tr>
+                    <?php
+                    include '../config/koneksi.php';
+                    $t = date("Y-m-d");
+                    $no = 1;
+                    $sql = mysqli_query($koneksi, "SELECT * FROM barang WHERE stok <= 20 ");
+                    while ($r = mysqli_fetch_assoc($sql)) {
+                    ?>
+                      <tr>
+                        <td class="text-left"><?php echo $no++; ?></td>
+                        <td class="text-left"><?php echo $r['nama_barang']; ?></td>
+                        <td class="text-left"><?php echo $r['stok']; ?></td>
+                        <td class="text-left"><?php echo $r['tempat']; ?></td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>

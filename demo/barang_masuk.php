@@ -51,6 +51,9 @@
                             menu
                         </button>
                         <span class="mdc-top-app-bar__title">Selamat Datang !</span>
+                        <button class="mdc-button mdc-button--outlined outlined-button--dark">
+                            <?php echo date("d - F - Y") ?>
+                        </button>
                     </div>
                 </div>
             </header>
@@ -61,23 +64,40 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card p-0">
                             <h6 class="card-title card-padding pb-0">
-                                <b>Data Barang Minim Stok</b>
+                                <button class="mdc-button mdc-button--raised icon-button filled-button--primary">
+                                    <i class="material-icons mdc-button__icon">add</i>
+                                </button>
+                                <b>Data Barang Masuk</b>
                             </h6>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th class="text-left">No</th>
+                                            <th class="text-left">Tanggal</th>
                                             <th class="text-left">Nama Barang</th>
                                             <th class="text-left">Stok Barang</th>
                                             <th class="text-left">Tempat</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-left">Frozen yogurt</td>
-                                            <td class="text-left">20</td>
-                                            <td class="text-left">Gudang1</td>
-                                        </tr>
+                                        <?php
+                                        include '../config/koneksi.php';
+                                        $t = date("Y-m-d");
+                                        $no = 1;
+                                        $sql = mysqli_query($koneksi, "SELECT * FROM barang_masuk");
+                                        while ($r = mysqli_fetch_assoc($sql)) {
+                                        ?>
+                                            <tr>
+                                                <td class="text-left"><?php echo $no++; ?></td>
+                                                <td class="text-left"><?php echo $r['tanggal']; ?></td>
+                                                <td class="text-left"><?php echo $r['nama_barang']; ?></td>
+                                                <td class="text-left"><?php echo $r['jumlah']; ?></td>
+                                                <td class="text-left"><?php echo $r['tempat']; ?></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
