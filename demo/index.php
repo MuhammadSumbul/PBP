@@ -3,11 +3,11 @@
 
 // if (!isset($_SESSION['id'])) {
 //   echo "
-//   <script>
-//   alert('Anda harus login dulu');
-//   window.location = 'login.php';
-//   </script>
-//   ";
+//    <script>
+//    alert('Anda harus login dulu');
+//    window.location = 'login.php';
+//    </script>
+//    ";
 // }
 // include '../config/koneksi.php';
 ?>
@@ -68,8 +68,9 @@
                     <h5 class="card-title">Barang Masuk </h5>
                     <?php
                     include "../config/koneksi.php";
+                    $bulan = date("m");
                     $tgl = date("Y-m-d");
-                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangmasuk) AS hasil FROM barang_masuk WHERE tanggal = '$tgl'");
+                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangmasuk) AS hasil FROM barang_masuk WHERE month(tanggal) = '$bulan'");
                     $hasil =  mysqli_fetch_assoc($sql);
                     $cek    = mysqli_num_rows($sql);
                     if ($cek > 0) { ?>
@@ -81,7 +82,8 @@
                         0 Layanan
                       </h5>
                     <?php } ?>
-                    <p class="tx-12 text-muted">48% target reached</p>
+                    <p class="tx-12 text-muted">Bulan <?php setlocale(LC_TIME, 'id_ID');
+                                                      echo strftime('%B'); ?></p>
                     <div class="card-icon-wrapper">
                       <i class="material-icons">dvr</i>
                     </div>
@@ -94,8 +96,9 @@
                     <h5 class="card-title">Barang Keluar</h5>
                     <?php
                     include "../config/koneksi.php";
+                    $bulan = date("m");
                     $tgl = date("Y-m-d");
-                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangkeluar) AS hasil FROM barang_keluar WHERE tanggal = '$tgl'");
+                    $sql = mysqli_query($koneksi, "SELECT COUNT(id_barangkeluar) AS hasil FROM barang_keluar WHERE month(tanggal) = '$bulan'");
                     $hasil =  mysqli_fetch_assoc($sql);
                     $cek    = mysqli_num_rows($sql);
                     if ($cek > 0) { ?>
@@ -107,7 +110,8 @@
                         0 Layanan
                       </h5>
                     <?php } ?>
-                    <p class="tx-12 text-muted">55% target reached</p>
+                    <p class="tx-12 text-muted">Bulan <?php setlocale(LC_TIME, 'id_ID');
+                                                      echo strftime('%B'); ?></p>
                     <div class="card-icon-wrapper">
                       <i class="material-icons">attach_money</i>
                     </div>

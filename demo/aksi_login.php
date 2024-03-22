@@ -1,6 +1,6 @@
 <?php
 include '../config/koneksi.php';
-session_start(); 
+session_start();
 
 $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST['username']));
 $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST['password']));
@@ -13,10 +13,10 @@ $cek    = mysqli_num_rows($sql);
 if ($cek == 1) {
 
     $_SESSION['id']         = $data['id_user'];
-    $_SESSION['nama_user']  = $data['nama_user'];
+    $_SESSION['nama']       = $data['nama'];
     $_SESSION['username']   = $username;
-    $_SESSION['level']      = $data['level'];
-    $_SESSION['status']      = $data['status'];
+    $_SESSION['password']   = $password;
+    $_SESSION['status']     = $data['status'];
 
     header("location:index.php");
 } else {

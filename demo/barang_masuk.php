@@ -64,9 +64,11 @@
                     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                         <div class="mdc-card p-0">
                             <h6 class="card-title card-padding pb-0">
-                                <button class="mdc-button mdc-button--raised icon-button filled-button--primary">
-                                    <i class="material-icons mdc-button__icon">add</i>
-                                </button>
+                                <a href="tambah_barangmasuk.php">
+                                    <button class="mdc-button mdc-button--raised icon-button filled-button--primary">
+                                        <i class="material-icons mdc-button__icon">add</i>
+                                    </button>
+                                </a>
                                 <b>Data Barang Masuk</b>
                             </h6>
                             <div class="table-responsive">
