@@ -11,6 +11,8 @@
 // }
 // include '../config/koneksi.php';
 ?>
+
+
 <?php
 include 'menu.php';
 ?>
@@ -22,18 +24,18 @@ include 'menu.php';
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
                 <h6 class="card-title card-padding pb-0">
-                    <a href="barang_keluar.php">
+                    <a href="barang_masuk.php">
                         <button class="mdc-button mdc-button--raised icon-button filled-button--secondary">
                             <i class="material-icons mdc-button__icon">cancel</i>
                         </button>
                     </a>
-                    <b>Tambah Data Barang Keluar</b>
+                    <b>Tambah Data Barang Masuk</b>
                 </h6>
                 <form method="post" action="">
                     <div class="mdc-card">
                         <div class="template-demo">
                             <h5 class="font-weight-light ">
-                                Nama Barang Keluar
+                                Nama Barang Masuk
                             </h5>
                             <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
@@ -121,32 +123,28 @@ if (isset($_POST['simpan'])) {
     $nama_barang = $_POST['nama_barang'];
     $stok = $_POST['stok'];
     $tempat = $_POST['tempat'];
-    $barang = mysqli_query($koneksi, "SELECT nama_barang from barang WHERE nama_barang = '$nama_barang'");
+    $barang = mysqli_query($koneksi, "SELECT * from barang WHERE nama_barang = '$nama_barang'");
     $cek    = mysqli_num_rows($barang);
+    // echo $cek;
+    // echo "
+    //   <script>
+    //   alert('" . $cek . "');
+    //   </script>";
 
-    if ($cek == 0) {
+
+    $sql = mysqli_query($koneksi, "INSERT INTO user VALUES('', '" . date("Y-m-d") . "' , '$nama_barang', '$stok','$tempat')");
+
+    if ($sql) {
         echo "
       <script>
-      alert('Barang Yang Anda Keluar Kosong !');
-      window.location.href = 'barang_keluar.php';
+      alert('Data Berhasil Disimpan');
+      window.location.href = 'barang_masuk.php';
       </script>";
     } else {
-        $queryStok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT nama_barang from barang WHERE nama_barang = '$nama_barang'"));
-        $stokBaru = $queryStok['stok'] - $stok;
-        $sql = mysqli_query($koneksi, "UPDATE barang SET stok = $stokBaru WHERE nama_barang = $nama_barang");
-
-        if ($sql) {
-            echo "
-      <script>
-      alert('Data Berhasil Disimpan');
-      window.location.href = 'barang_keluar.php';
-      </script>";
-        } else {
-            echo "Data Tidak Masuk";
-        }
+        echo "Data Tidak Masuk";
     }
 
-    $sql = mysqli_query($koneksi, "INSERT INTO barang_keluar VALUES('', '" . date("Y-m-d") . "' , '$nama_barang', '$stok','$tempat')");
+
 }
 ?>
 

@@ -23,12 +23,12 @@ include 'menu.php';
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
                 <h6 class="card-title card-padding pb-0">
-                    <a href="tambah_barangkeluar.php">
+                    <a href="tambah_barangmasuk.php">
                         <button class="mdc-button mdc-button--raised icon-button filled-button--primary">
                             <i class="material-icons mdc-button__icon">add</i>
                         </button>
                     </a>
-                    <b>Data Barang Keluar</b>
+                    <b>Data User</b>
                 </h6>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -39,6 +39,7 @@ include 'menu.php';
                                 <th class="text-left">Nama Barang</th>
                                 <th class="text-left">Stok Barang</th>
                                 <th class="text-left">Tempat</th>
+                                <th class="text-left">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,15 +47,20 @@ include 'menu.php';
                             include '../config/koneksi.php';
                             $t = date("Y-m-d");
                             $no = 1;
-                            $sql = mysqli_query($koneksi, "SELECT * FROM barang_keluar");
+                            $sql = mysqli_query($koneksi, "SELECT * FROM user");
                             while ($r = mysqli_fetch_assoc($sql)) {
                             ?>
                                 <tr>
                                     <td class="text-left"><?php echo $no++; ?></td>
-                                    <td class="text-left"><?php echo $r['tanggal']; ?></td>
-                                    <td class="text-left"><?php echo $r['nama_barang']; ?></td>
-                                    <td class="text-left"><?php echo $r['jumlah']; ?></td>
-                                    <td class="text-left"><?php echo $r['tempat']; ?></td>
+                                    <td class="text-left"><?php echo $r['nama']; ?></td>
+                                    <td class="text-left"><?php echo $r['username']; ?></td>
+                                    <td class="text-left"><?php echo $r['password']; ?></td>
+                                    <td class="text-left"><?php echo $r['status']; ?></td>
+                                    <td class="text-left">
+                                        <b>
+                                            <p><a href="<?= 'hapus_user.php?id=' . $r['id_user'] ?>">Hapus</a> - <a href="<?= 'edit_iser.php?id=' . $r['id_user'] ?>">Edit</a></p>
+                                        </b>
+                                    </td>
                                 </tr>
                             <?php
                             }

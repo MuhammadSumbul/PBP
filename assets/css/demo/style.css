@@ -30,6 +30,7 @@ h1 .title {
   overflow: hidden;
   vertical-align: middle;
   border-radius: 4px;
+  
 }
 
 .mdc-button::-moz-focus-inner {
@@ -106,6 +107,7 @@ svg.mdc-button__icon {
 .mdc-button--raised .mdc-button__icon,
 .mdc-button--unelevated .mdc-button__icon,
 .mdc-button--outlined .mdc-button__icon {
+  
   /* @noflip */
   margin-left: -4px;
   /* @noflip */

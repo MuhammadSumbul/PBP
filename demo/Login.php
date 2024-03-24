@@ -1,75 +1,95 @@
- <?php
-    include 'config/koneksi.php';
-    ?>
- <!DOCTYPE html>
- <html lang="en">
+<?php
+include "../config/koneksi.php";
+?>
 
- <head>
-     <meta charset="utf-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="">
-     <meta name="author" content="Dashboard">
-     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-     <title>NB - Nongkrong Bareng</title>
 
-     <!-- Favicons -->
-     <link href="img/2.png" rel="icon">
-     <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-     <!-- Bootstrap core CSS -->
-     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-     <!--external css-->
-     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-     <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
-     <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
-     <!-- Custom styles for this template -->
-     <link href="css/style.css" rel="stylesheet">
-     <link href="css/style-responsive.css" rel="stylesheet">
-     <script src="lib/chart-master/Chart.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-     <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
- </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Material Dash</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css" />
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="../assets/css/demo/style.css" />
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            /* Ganti 'path_to_your_image.jpg' dengan path gambar latar belakang Anda */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+    </style>
+</head>
 
- <body>
-     <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-     <div id="login-page">
-         <div class="container">
-             <form class="form-login" action="aksi_login.php" method="POST">
-                 <h2 class="form-login-heading"><b>NONGKRONG BARENG</b></h2>
-                 <div class="login-wrap">
-                     <h4 class="centered"><u>Silahkan Login Terlebih Dahulu !!</u></h4>
-                     <label for=""> Username</label>
-                     <input type="text" name="username" class="form-control" placeholder="Username">
-                     <br>
-                     <label for="">Password</label>
-                     <input type="password" name="password" class="form-control" placeholder="Password">
-                     <br>
-                     <button type="submit" name="login" class="btn btn-theme btn-block"><i class="fa fa-lock"></i> SIGN IN</button>
-                     <!--<a target="blank" href="register.php"><h5 class="centered"><u>Register Akun Baru</u></h5></a>-->
-                     <hr>
-                     <h5 class="centered">Created By : Ahmad Rizal Mustofa</h5>
-                     <!-- modal -->
-             </form>
-         </div>
-     </div>
-     <!-- js placed at the end of the document so the pages load faster -->
-     <script src="lib/jquery/jquery.min.js"></script>
-     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-     <!--BACKSTRETCH-->
-     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-     <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
-     <script>
-         $.backstretch("img/login-bg.jpg", {
-             speed: 1000
-         });
-     </script>
- </body>
+<body>
+    <script src="../assets/js/preloader.js"></script>
+    <div class="body-wrapper">
+        <div class="main-wrapper">
+            <div class="page-wrapper full-page-wrapper d-flex align-items-center justify-content-center">
+                <main class="auth-page">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-1-tablet"></div>
+                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet">
+                                <div class="mdc-card">
+                                    <form action="aksi_login.php" method="POST">
+                                        <div class="mdc-layout-grid">
+                                            <div class="mdc-layout-grid__inner">
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="username" />
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Username</label>
+                                                    </div>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" type="password" id="text-field-hero-input" name="password" />
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input" class="mdc-floating-label">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+                                                    <button class="mdc-button mdc-button--raised w-100" type="submit" name="login">
+                                                        Login
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-1-tablet"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+    <!-- plugins:js -->
+    <script src="../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../assets/js/material.js"></script>
+    <script src="../assets/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
 
- </html>
+
+</html>
