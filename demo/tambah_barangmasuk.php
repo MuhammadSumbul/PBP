@@ -69,9 +69,9 @@ include 'menu.php';
                             <div class="mdc-form-field">
                                 <div class="mdc-checkbox">
                                     <form>
-                                        <input type="radio" name="tempat" value="gudang1"> Gudang 1
-                                        <input type="radio" name="tempat" value="gudang2"> Gudang 2
-                                        <input type="radio" name="tempat" value="gudang3"> Gudang 3
+                                        <input type="radio" name="tempat" value="Gudang 1"> Gudang 1 (Makanan)
+                                        <input type="radio" name="tempat" value="Gudang 2"> Gudang 2 (Minuman)
+                                        <input type="radio" name="tempat" value="Gudang 3"> Gudang 3 (Aksesoris)
                                     </form>
                                 </div>
                             </div>
@@ -116,7 +116,6 @@ include 'menu.php';
 <!-- End custom js for this page-->
 </body>
 
-
 <?php
 include "../config/koneksi.php";
 if (isset($_POST['simpan'])) {
@@ -125,11 +124,6 @@ if (isset($_POST['simpan'])) {
     $tempat = $_POST['tempat'];
     $barang = mysqli_query($koneksi, "SELECT * from barang WHERE nama_barang = '$nama_barang'");
     $cek    = mysqli_num_rows($barang);
-    // echo $cek;
-    // echo "
-    //   <script>
-    //   alert('" . $cek . "');
-    //   </script>";
 
     if ($cek < 1) {
         $sql = mysqli_query($koneksi, "INSERT INTO barang VALUES('', '$nama_barang', '$stok','$tempat')");
@@ -144,11 +138,11 @@ if (isset($_POST['simpan'])) {
             echo "Data Tidak Masuk";
         }
     } else {
-        $queryStok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * from barang WHERE nama_barang = $nama_barang"));
+        $queryStok = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * from barang WHERE nama_barang = '$nama_barang'"));
         $stokBaru = $queryStok['stok'] + $stok;
-        $sql = mysqli_query($koneksi, "UPDATE barang SET stok = $stokBaru WHERE nama_barang = '$nama_barang'");
+        $sqlUpdateStok = mysqli_query($koneksi, "UPDATE barang SET stok = $stokBaru WHERE nama_barang = '$nama_barang'");
 
-        if ($sql) {
+        if ($sqlUpdateStok) {
             echo "
       <script>
       alert('Data Berhasil Disimpan');
@@ -159,7 +153,10 @@ if (isset($_POST['simpan'])) {
         }
     }
 
-    $sql = mysqli_query($koneksi, "INSERT INTO barang_masuk VALUES('', '" . date("Y-m-d") . "' , '$nama_barang', '$stok','$tempat')");
+    $sqlInsertBarangMasuk = mysqli_query($koneksi, "INSERT INTO barang_masuk VALUES('', '" . date("Y-m-d") . "' , '$nama_barang', '$stok','$tempat')");
+    if (!$sqlInsertBarangMasuk) {
+        echo "Gagal menyimpan data barang masuk";
+    }
 }
 ?>
 

@@ -23,7 +23,7 @@ include 'menu.php';
         <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
             <div class="mdc-card p-0">
                 <h6 class="card-title card-padding pb-0">
-                    <a href="tambah_barangmasuk.php">
+                    <a href="tambah_user.php">
                         <button class="mdc-button mdc-button--raised icon-button filled-button--primary">
                             <i class="material-icons mdc-button__icon">add</i>
                         </button>
@@ -58,7 +58,17 @@ include 'menu.php';
                                     <td class="text-left"><?php echo $r['status']; ?></td>
                                     <td class="text-left">
                                         <b>
-                                            <p><a href="<?= 'hapus_user.php?id=' . $r['id_user'] ?>">Hapus</a> - <a href="<?= 'edit_iser.php?id=' . $r['id_user'] ?>">Edit</a></p>
+                                            <?php
+                                            if ($r['status'] == "Manager") {
+                                            ?><p><a href="<?= 'edit_user.php?id=' . $r['id_user'] ?>">Edit</a></p>
+                                            <?php
+                                            } else {
+                                            ?> <p><a href="<?= 'hapus_user.php?id=' . $r['id_user'] ?>">Hapus</a> - <a href="<?= 'edit_user.php?id=' . $r['id_user'] ?>">Edit</a></p>
+                                            <?php
+                                            }
+
+                                            ?>
+
                                         </b>
                                     </td>
                                 </tr>

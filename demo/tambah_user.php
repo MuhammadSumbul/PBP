@@ -29,18 +29,18 @@ include 'menu.php';
                             <i class="material-icons mdc-button__icon">cancel</i>
                         </button>
                     </a>
-                    <b>Tambah Data Barang Masuk</b>
+                    <b>Tambah Data Pengguna</b>
                 </h6>
                 <form method="post" action="">
                     <div class="mdc-card">
                         <div class="template-demo">
                             <h5 class="font-weight-light ">
-                                Nama Barang Masuk
+                                Nama Pengguna
                             </h5>
                             <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
                                     <div class="mdc-text-field">
-                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="nama_barang">
+                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="nama_user">
                                         <div class="mdc-line-ripple"></div>
                                     </div>
                                 </div>
@@ -50,12 +50,26 @@ include 'menu.php';
                         </br>
                         <div class="template-demo">
                             <h5 class="font-weight-light ">
-                                Stok Barang Masuk
+                                Username
                             </h5>
                             <div class="mdc-layout-grid__inner">
                                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
                                     <div class="mdc-text-field">
-                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="stok">
+                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="user">
+                                        <div class="mdc-line-ripple"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="template-demo">
+                            <h5 class="font-weight-light ">
+                                Password
+                            </h5>
+                            <div class="mdc-layout-grid__inner">
+                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12-desktop">
+                                    <div class="mdc-text-field">
+                                        <input class="mdc-text-field__input" id="text-field-hero-input" name="pass">
                                         <div class="mdc-line-ripple"></div>
                                     </div>
                                 </div>
@@ -69,16 +83,15 @@ include 'menu.php';
                             <div class="mdc-form-field">
                                 <div class="mdc-checkbox">
                                     <form>
-                                        <input type="radio" name="tempat" value="gudang1"> Gudang 1
-                                        <input type="radio" name="tempat" value="gudang2"> Gudang 2
-                                        <input type="radio" name="tempat" value="gudang3"> Gudang 3
+                                        <input type="radio" name="status" value="Manager"> Manager
+                                        <input type="radio" name="status" value="Karyawan"> Karyawan
                                     </form>
                                 </div>
                             </div>
                         </div>
                         </br>
                         <button class="mdc-button mdc-button--raised icon-button filled-button--primary" name="simpan" value="simpan">
-                            <i class="material-icons mdc-button__icon">add</i> Tambah Barang
+                            <i class="material-icons mdc-button__icon">add</i> Tambah Pengguna
                         </button>
                     </div>
                 </form>
@@ -120,31 +133,22 @@ include 'menu.php';
 <?php
 include "../config/koneksi.php";
 if (isset($_POST['simpan'])) {
-    $nama_barang = $_POST['nama_barang'];
-    $stok = $_POST['stok'];
-    $tempat = $_POST['tempat'];
-    $barang = mysqli_query($koneksi, "SELECT * from barang WHERE nama_barang = '$nama_barang'");
-    $cek    = mysqli_num_rows($barang);
-    // echo $cek;
-    // echo "
-    //   <script>
-    //   alert('" . $cek . "');
-    //   </script>";
+    $nama_user = $_POST['nama_user'];
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+    $status = $_POST['status'];
 
-
-    $sql = mysqli_query($koneksi, "INSERT INTO user VALUES('', '" . date("Y-m-d") . "' , '$nama_barang', '$stok','$tempat')");
+    $sql = mysqli_query($koneksi, "INSERT INTO user VALUES('', '$nama_user', '$user', '$pass','$status')");
 
     if ($sql) {
         echo "
       <script>
       alert('Data Berhasil Disimpan');
-      window.location.href = 'barang_masuk.php';
+      window.location.href = 'user.php';
       </script>";
     } else {
         echo "Data Tidak Masuk";
     }
-
-
 }
 ?>
 
